@@ -22,6 +22,7 @@
 		A3CF1E1526D402DA0071BF24 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3CF1E1426D402DA0071BF24 /* AVKit.framework */; };
 		A3CF1E1726D4033E0071BF24 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E1626D4033E0071BF24 /* Constants.swift */; };
 		A3CF1E3726D42A4E0071BF24 /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E3626D42A4E0071BF24 /* CodeTextView.swift */; };
+		A3CF1E5626D4530F0071BF24 /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A3CF1E1426D402DA0071BF24 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		A3CF1E1626D4033E0071BF24 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3CF1E3626D42A4E0071BF24 /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
+		A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +103,11 @@
 			isa = PBXGroup;
 			children = (
 				A3BC136226CABA170004FE82 /* HomeView.swift */,
-				A3BC137C26D2D6410004FE82 /* HomeViewRow.swift */,
 				A3BC137E26D2FA1F0004FE82 /* ContentView.swift */,
-				A3BC138026D308660004FE82 /* ContentViewRow.swift */,
 				A3CF1E1126D402C70071BF24 /* ContentDetailView.swift */,
+				A3BC137C26D2D6410004FE82 /* HomeViewRow.swift */,
+				A3BC138026D308660004FE82 /* ContentViewRow.swift */,
+				A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */,
 				A3CF1E3626D42A4E0071BF24 /* CodeTextView.swift */,
 			);
 			path = Views;
@@ -231,6 +234,7 @@
 				A3CF1E3726D42A4E0071BF24 /* CodeTextView.swift in Sources */,
 				A3BC136326CABA170004FE82 /* HomeView.swift in Sources */,
 				A3BC136126CABA170004FE82 /* Learning_AppApp.swift in Sources */,
+				A3CF1E5626D4530F0071BF24 /* RectangleCard.swift in Sources */,
 				A3CF1E1726D4033E0071BF24 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

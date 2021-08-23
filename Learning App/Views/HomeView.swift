@@ -21,8 +21,11 @@ struct HomeView: View {
                             
                             NavigationLink(destination: ContentView()
                                             .onAppear(perform: {model.beginModule(module.id)
-                                            })) {
+                                            }),
+                                           tag: module.id,
+                                           selection: $model.selectedIndex) {
                                 HomeViewRow(image: module.content.image, category: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
+
                             }
                             
                             HomeViewRow(image: module.test.image, category: "\(module.category) Test", description: module.test.description, count: "\(module.test.questions.count) Questions", time: module.test.time)

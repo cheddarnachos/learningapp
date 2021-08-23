@@ -13,6 +13,7 @@ class ContentModel: ObservableObject{
     @Published var currentModule: Module?
     @Published var currentLesson: Lesson?
     @Published var lessonDescription = NSAttributedString()
+    @Published var selectedIndex: Int?
     
     var currentModuleIndex = 0
     var currentLessonIndex = 0
