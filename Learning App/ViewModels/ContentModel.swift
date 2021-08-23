@@ -9,7 +9,11 @@ import Foundation
 
 class ContentModel: ObservableObject{
     
-    @Published var model = [Module]()
+    @Published var modules = [Module]()
+    @Published var currentModule: Module?
+    
+    var currentModuleIndex = 0
+    
     var style: Data?
     
     init() {
@@ -25,7 +29,7 @@ class ContentModel: ObservableObject{
             let decoder = JSONDecoder()
             let parsedJsonData = try decoder.decode([Module].self, from: data)
             
-            self.model = parsedJsonData
+            self.modules = parsedJsonData
             
         } catch {
             print("Couldn't parse json")
@@ -42,4 +46,18 @@ class ContentModel: ObservableObject{
         }
     }
     
+    func beginModule(_ moduleId: Int) {
+        
+        for index in 0..<modules.count {
+            if modules[index].id == moduleId {
+                currentModuleIndex = index
+                break
+            }
+        }
+        
+        currentModule = modules[currentModuleIndex]
+            
+    }
+        
 }
+    
