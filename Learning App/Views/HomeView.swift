@@ -28,7 +28,16 @@ struct HomeView: View {
 
                             }
                             
+                            NavigationLink(destination: TestView()
+                                            .onAppear(perform: {model.beginTest(module.id)}),
+                                           tag: module.id,
+                                           selection: $model.currentTestIndex) {
                             HomeViewRow(image: module.test.image, category: "\(module.category) Test", description: module.test.description, count: "\(module.test.questions.count) Questions", time: module.test.time)
+                            }
+                            
+                            NavigationLink(destination: EmptyView()) {
+                                EmptyView()
+                            }
                             
                         }
                         

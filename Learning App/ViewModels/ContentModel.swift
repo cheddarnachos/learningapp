@@ -12,11 +12,16 @@ class ContentModel: ObservableObject{
     @Published var modules = [Module]()
     @Published var currentModule: Module?
     @Published var currentLesson: Lesson?
-    @Published var lessonDescription = NSAttributedString()
+    @Published var currentQuestion: Question?
+    @Published var codeText = NSAttributedString()
     @Published var selectedIndex: Int?
+    @Published var currentTestIndex: Int?
+
     
     var currentModuleIndex = 0
     var currentLessonIndex = 0
+    @Published var currentQuestionIndex = 0
+    
     var style: Data?
     
     init() {
@@ -71,14 +76,30 @@ class ContentModel: ObservableObject{
                 currentLessonIndex = 0
             }
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
-            lessonDescription = setAttributedString(currentLesson!.explanation)
+            codeText = setAttributedString(currentLesson!.explanation)
 
         }
                 
     }
     
     func hasNextLesson() -> Bool {
-            return currentLessonIndex + 1 < currentModule!.content.lessons.count
+            return (currentLessonIndex) + 1 < currentModule!.content.lessons.count
+    }
+    
+    func beginTest(_ moduleId: Int) {
+        
+        // Imposto il currentModule
+        beginModule(moduleId)
+        
+        // Imposto l'index della prima domanda a 0. Se sono presenti domande, imposto la prima domanda su domanda[0]
+        currentQuestionIndex = 0
+        if currentModule != nil {
+            if currentModule?.test.questions.count ?? 0 > 0 {
+                currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+                codeText = setAttributedString(currentQuestion!.content)
+
+            }
+        }
     }
     
     func nextLesson() {
@@ -86,13 +107,26 @@ class ContentModel: ObservableObject{
         
         if currentLessonIndex < currentModule!.content.lessons.count {
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
-            lessonDescription = setAttributedString(currentLesson!.explanation)
+            codeText = setAttributedString(currentLesson!.explanation)
         } else {
             currentLessonIndex = 0
             currentLesson = nil
         }
     }
     
+    func nextQuestion() {
+        currentQuestionIndex += 1
+        
+        if currentQuestionIndex <= currentModule!.test.questions.count {
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = setAttributedString(currentQuestion!.content)
+        } else {
+            currentQuestionIndex = 0
+            currentQuestion = nil
+        }
+    }
+    
+
     func setAttributedString(_ htmlString: String) -> NSAttributedString {
         
         var resultString = NSAttributedString()
