@@ -35,9 +35,9 @@ struct HomeView: View {
                             HomeViewRow(image: module.test.image, category: "\(module.category) Test", description: module.test.description, count: "\(module.test.questions.count) Questions", time: module.test.time)
                             }
                             
-                            NavigationLink(destination: EmptyView()) {
+                            /* NavigationLink(destination: EmptyView()) {
                                 EmptyView()
-                            }
+                            } */
                             
                         }
                         

@@ -13,17 +13,27 @@ struct TestView: View {
     @State var selectedAnswerIndex: Int?
     @State var submitted = false
     @State var correctAnswers = 0
+    var textButton: String {
+        if !submitted {
+            return "Submit answer"
+        } else if model.currentQuestionIndex + 1 < (model.currentModule?.test.questions.count ?? 0) {
+            return "Next question"
+        } else {
+            return "Finish"
+        }
+    }
+    
     var body: some View {
         
         VStack {
-            // Mostro index domanda attuale
-            Text("Question \(model.currentQuestionIndex + 1) of \(model.currentModule?.test.questions.count ?? 0)")
-            
             if model.currentQuestion != nil {
-                
-                // Mostro domanda
+                // Mostro index domanda attuale
+                Text("Question \(model.currentQuestionIndex + 1) of \(model.currentModule?.test.questions.count ?? 0)")
+
+                // Mostro domanda attuale
                 CodeTextView()
                     .frame(height: 200)
+                
                 // Mostro possibili risposte
                 ForEach(0..<model.currentQuestion!.answers.count, id: \.self) { index in
                     
@@ -46,8 +56,6 @@ struct TestView: View {
                             } else {
                                 RectangleCard(color: index == selectedAnswerIndex ? .gray : .white)
                                     .frame(height: 40)
-
-                                
                             }
                             Text("\(model.currentQuestion!.answers[index])")
                                 .bold()
@@ -57,58 +65,30 @@ struct TestView: View {
                     .disabled(submitted)
                 }
                 
+                Spacer()
+                
+                // Pulsante "submit", "next question" o "finish"
+                Button {
+                    if !submitted {
+                        submitted = true
+                    } else {
+                        updateQuestionVar()
+                        model.nextQuestion()
+                    }
+                } label: {
+                    ZStack {
+                        RectangleCard(color: .green)
+                            .frame(height: 50)
+                        
+                        Text(textButton)
+                            .foregroundColor(.white)
+                            .bold()
+                        
+                    }
+                }.disabled(selectedAnswerIndex == nil)
             }
-            Spacer()
-            
-            // Pulsante "prossima domanda" o fine test
-                        
-            if !submitted {
-                Button {
-                    submitted = true
-                    
-                } label: {
-                    ZStack {
-                        RectangleCard(color: .green)
-                            .frame(height: 50)
-                        
-                        Text("Submit answer")
-                            .foregroundColor(.white)
-                            .bold()
-                        
-                    }
-                }
-                .disabled(selectedAnswerIndex == nil)
-            } else if model.currentQuestionIndex + 1 < (model.currentModule?.test.questions.count ?? 0) {
-                Button {
-                    updateQuestionVar()
-                    model.nextQuestion()
-                } label: {
-                    ZStack {
-                        RectangleCard(color: .green)
-                            .frame(height: 50)
-                        
-                        Text("Next question")
-                            .foregroundColor(.white)
-                            .bold()
-                        
-                    }
-                }
-            } else {
-                Button {
-                    model.currentTestIndex = nil
-                    
-                } label: {
-                    ZStack {
-                        RectangleCard(color: .red)
-                            .frame(height: 50)
-                        
-                        Text("Finish")
-                            .foregroundColor(.white)
-                            .bold()
-                        
-                    }
-                }
-
+            else {
+                TestResultView(correctAnswers: correctAnswers)
             }
         }.padding()
         .navigationTitle("\(model.currentModule?.category ?? "") Test")

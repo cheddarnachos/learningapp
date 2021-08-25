@@ -26,6 +26,7 @@ class ContentModel: ObservableObject{
     
     init() {
         getLocalData()
+        getRemoteData()
     }
     
     func getLocalData() {
@@ -52,6 +53,49 @@ class ContentModel: ObservableObject{
         } catch {
             print("Couldn't retrieve style file")
         }
+    }
+    
+    func getRemoteData() {
+        
+        // Creo la variabile con l'URL da contattare
+        let urlString = "https://cheddarnachos.github.io/learningapp-data/data2.json"
+        
+        // Creo l'oggetto URL dal mio url
+        let url = URL(string: urlString)
+        
+        // Check che l'oggetto URL non sia nil
+        guard url != nil else {
+            return
+        }
+        
+        // Creo la mia request (skippabile, ma utile nel caso dovessi aggiungere parametri e/o headers alla request)
+        let request = URLRequest(url: url!)
+        
+        // Creo la session
+        let session = URLSession.shared
+        
+        // Creo l'oggetto dataTask (restituito dal metodo dataTask della session) in modo da salvare il risultato della request in una costante
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            
+            // Controllo che non ci siano errori
+            guard error == nil else {
+                return
+            }
+            
+            // Gestisco la response
+            let decoder = JSONDecoder()
+            do {
+                let parsedJsonData = try decoder.decode([Module].self, from: data!)
+                
+                self.modules += parsedJsonData
+                
+            } catch {
+                print("There was an error")
+            }
+        }
+        
+        // Lancio il metodo dataTask
+        dataTask.resume()
     }
     
     func beginModule(_ moduleId: Int) {
@@ -117,7 +161,7 @@ class ContentModel: ObservableObject{
     func nextQuestion() {
         currentQuestionIndex += 1
         
-        if currentQuestionIndex <= currentModule!.test.questions.count {
+        if currentQuestionIndex < currentModule!.test.questions.count {
             currentQuestion = currentModule!.test.questions[currentQuestionIndex]
             codeText = setAttributedString(currentQuestion!.content)
         } else {

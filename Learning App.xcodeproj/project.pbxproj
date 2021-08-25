@@ -24,6 +24,7 @@
 		A3CF1E3726D42A4E0071BF24 /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E3626D42A4E0071BF24 /* CodeTextView.swift */; };
 		A3CF1E5626D4530F0071BF24 /* RectangleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */; };
 		A3CF1E7526D4E72B0071BF24 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E7426D4E72B0071BF24 /* TestView.swift */; };
+		A3CF1E7726D53B760071BF24 /* TestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CF1E7626D53B760071BF24 /* TestResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A3CF1E3626D42A4E0071BF24 /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
 		A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleCard.swift; sourceTree = "<group>"; };
 		A3CF1E7426D4E72B0071BF24 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		A3CF1E7626D53B760071BF24 /* TestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				A3BC137E26D2FA1F0004FE82 /* ContentView.swift */,
 				A3CF1E1126D402C70071BF24 /* ContentDetailView.swift */,
 				A3CF1E7426D4E72B0071BF24 /* TestView.swift */,
+				A3CF1E7626D53B760071BF24 /* TestResultView.swift */,
 				A3BC137C26D2D6410004FE82 /* HomeViewRow.swift */,
 				A3BC138026D308660004FE82 /* ContentViewRow.swift */,
 				A3CF1E5526D4530F0071BF24 /* RectangleCard.swift */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CF1E7526D4E72B0071BF24 /* TestView.swift in Sources */,
+				A3CF1E7726D53B760071BF24 /* TestResultView.swift in Sources */,
 				A3BC137926CABB7E0004FE82 /* Model.swift in Sources */,
 				A3BC137D26D2D6410004FE82 /* HomeViewRow.swift in Sources */,
 				A3BC137F26D2FA1F0004FE82 /* ContentView.swift in Sources */,
